@@ -1,5 +1,20 @@
 # Python Data Science Integration SDK for Fusion 5.0
 
+## Table of Contents
+
+* [Overview](#overview)
+* [User Guide](#user-guide)
+   * [Install the Data Science Integration SDK locally](#install-the-data-science-integration-sdk-locally)
+   * [Train a custom model](#train-a-custom-model)
+   * [Create and test plugin](#create-and-test-plugin)
+   * [Packaging plugin](#packaging-plugin)
+   * [Testing and Deployment](#testing-and-deployment)
+      * [Testing Locally](#testing-locally)
+      * [Deploy model bundle to Fusion](#deploy-model-bundle-to-fusion)
+* [Examples](#examples)
+* [Appendix A: Building a custom ML service image](#appendix-a-building-a-custom-ml-service-image)
+   * [Create Image](#create-image)
+
 ## Overview
 
 With Fusion 5.0, data scientists and machine learning engineers can deploy end-user trained Python machine learning models to Fusion, offering real-time prediction and seamless integration with query and index pipelines.  
@@ -61,7 +76,7 @@ The Data Science Integration (DSI) SDK includes helper libraries that will strea
 
 ### Train a custom model
 
-Train a machine learning model using the virtual environment in any tool of your choice (i.e. Jupyter).
+Train a machine learning model using the virtual environment in any tool of your choice (i.e. Jupyter).  After training your model, serialize the model and stateful preprocessing pipelines to files.  Refer to the documentation of the modeling library you're using for instructions on how to do this.
 
 The `requirements.txt` included with this SDK contains all the libraries that are available in Fusion's Machine Learning Service's runtime environment. This environment includes the most popular libraries used by data scientists today (i.e. scikit-learn, Tensorflow, XGBoost, etc.). Restricting your training and inference code to these libraries will ensure that your model will work with Fusion without any additional setup steps.
 
@@ -251,6 +266,13 @@ output = client.predict({
 **IMPORTANT**: The  `MLServiceSDKFusionClient.predict()` function in intended only for development and testing purposes, not for production use.  To use your model in production, use in conjunction with query and index pipelines.
 
 If your model produces expected output without any errors, congratulations, you have successfully deployed your model to Fusion!  You can integrate your model with query and index pipelines using the Machine Learning stages.
+
+## Examples
+
+Refer to these notebooks for examples on creating and deploying models in Fusion:
+
+* [Example - Deploying a Python model.ipynb](Example - Deploying a Python model.ipynb)
+* [Example - Deploying a Python model with multiple fields.ipynb](Example - Deploying a Python model with multiple fields.ipynb)
 
 ## Appendix A: Building a custom ML service image
 
